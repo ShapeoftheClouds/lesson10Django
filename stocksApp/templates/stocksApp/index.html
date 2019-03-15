@@ -1,0 +1,27 @@
+{% extends "stocksApp/base.html" %}
+
+{% block content %}
+  <h1>This is the Stocks App</h1>
+
+  <p><h2>{{ stocks.stockname }} {{ stocks.earnings }}</h2></p>
+
+  <table style="width:60%" border=1>
+    <tr>
+      <th>Stock Name</th>
+      <th>Share No.</th>
+      <th>Earnings</th>
+    </tr>
+
+    {% for stock in stocks %}
+
+    <tr>
+      <td>{{ stock.stockname }}</td>
+      <td>{{ stock.shareno }}</td>
+      <td>${{ stock.earnings }}</td>
+    </tr>
+
+    {% empty %}
+    <p>No stocks found.</p>
+    {% endfor %}
+
+{% endblock content %}

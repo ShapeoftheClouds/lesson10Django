@@ -1,0 +1,10 @@
+{% extends "stocksApp/base.html" %}
+
+{% block content %}
+
+<body>
+  {{ cht_stocks|safe }}
+  <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
+</body>
+
+{% endblock content %}
