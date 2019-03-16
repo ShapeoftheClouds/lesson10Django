@@ -1,0 +1,12 @@
+{% extends "stocksApp/base.html" %}
+
+{% block content %}
+  <p>Add a new stock:</p>
+
+  <form action="{% url 'stocksApp:new_stock' %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">add stock</button>
+  </form>
+  
+{% endblock content %}

@@ -10,4 +10,5 @@ urlpatterns = [
        # Home page
        url(r'^$', views.index, name='index'),
        path('graphs/', IndexView.as_view(), name='graphs'),
+       path('new_stock/', views.new_stock, name='new_stock'),
 ]

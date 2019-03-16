@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import Stockspractice
 import pygal
 from pygal.style import BlueStyle
 from .charts import StocksPie
+from .forms import StockForm
 
 # Create your views here.
 
@@ -27,3 +30,17 @@ class IndexView(TemplateView):
 
         context['cht_stocks'] = cht_stocks.generate()
         return context
+
+def new_stock(request):
+    # Add a new stock.
+    if request.method != 'POST':
+        # No data submitted; create a blank form.
+        form = StockForm()
+    else:
+        # POST data submitted; process data.
+        form = StockForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('stocksApp:index'))
+    context = {'form' : form}
+    return render(request, 'stocksApp/new_stocks.html', context)
